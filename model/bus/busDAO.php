@@ -1,7 +1,7 @@
 <?php
 
 require_once 'C:\\xampp\\htdocs\\Brief9\\connection\\connexion.php';
-require_once 'C:\\xampp\\htdocs\\Brief9\\model\\ville\\modelBus.php';
+require_once 'C:\\xampp\\htdocs\\Brief9\\model\\bus\\modelBus.php';
 
 class BusDAO
 {
@@ -37,18 +37,25 @@ class BusDAO
     }
 
     public function getBuses()
-    {
-        $result = $this->db->query("SELECT * FROM Bus");
-        $buses = array();
+{
+    $query = "SELECT * FROM Bus;";
+    $stmt = $this->db->query($query);
+    $stmt->execute();
+    $busesData = $stmt->fetchAll();
+    $busesList = array();
 
-        while ($row = $result->fetch_assoc()) {
-            $bus = new Bus($row['matricule'], $row['busNom'], $row['capac'], $row['idEn']);
-            $bus->setBusNombre($row['busNombre']);
-            $buses[] = $bus;
-        }
-
-        return $buses;
+    foreach ($busesData as $bus) {
+        $busesList[] = new Bus(
+            $bus["matricule"],
+            $bus["busNom"],
+            $bus["capac"],
+            $bus["idEn"]
+        );
     }
+
+    return $busesList;
+}
+
 
     public function deleteBus($bus)
     {

@@ -38,16 +38,29 @@ class HoraireDAO
 
     public function getHoraires()
     {
-        $result = $this->db->query("SELECT * FROM Horaire");
-        $horaires = array();
-
-        while ($row = $result->fetch_assoc()) {
-            $horaire = new Horaire($row['hr_id'], $row['hr_dep'], $row['hr_arv'], $row['sieges_dispo'], $row['prix'], $row['dt'], $row['routeID'], $row['busID']);
-            $horaires[] = $horaire;
+        $query = "SELECT * FROM Horaire;";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        $horairesData = $stmt->fetchAll();
+        $horairesList = array();
+    
+        foreach ($horairesData as $row) {
+            $horaire = new Horaire(
+                $row['hr_id'],
+                $row['hr_dep'],
+                $row['hr_arv'],
+                $row['sieges_dispo'],
+                $row['prix'],
+                $row['dt'],
+                $row['routeID'],
+                $row['busID']
+            );
+            $horairesList[] = $horaire;
         }
-
-        return $horaires;
+    
+        return $horairesList;
     }
+    
 
     public function deleteHoraire($horaire)
     {

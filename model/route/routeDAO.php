@@ -38,16 +38,26 @@ class RouteDAO
 
     public function getRoutes()
     {
-        $result = $this->db->query("SELECT * FROM Routee");
-        $routes = array();
-
-        while ($row = $result->fetch_assoc()) {
-            $route = new Routee($row['routeID'], $row['distance'], $row['duree'], $row['villeDep'], $row['villeDes']);
-            $routes[] = $route;
+        $query = "SELECT * FROM Routee;";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        $routesData = $stmt->fetchAll();
+        $routesList = array();
+    
+        foreach ($routesData as $row) {
+            $route = new Routee(
+                $row['routeID'],
+                $row['distance'],
+                $row['duree'],
+                $row['villeDep'],
+                $row['villeDes']
+            );
+            $routesList[] = $route;
         }
-
-        return $routes;
+    
+        return $routesList;
     }
+    
 
     public function deleteRoute($route)
     {
