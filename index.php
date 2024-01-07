@@ -66,12 +66,13 @@
 <!-- HEADING -->
 
 <div class="container mt-5">
+    
   <div class="row">
 
     <div class="col-md-4">
       <div class="card">
-        <img src="https://pc.kosokubus.com/include/ib/img/seats_page/nh.jpg" class="card-img-top" alt="Spacious Interior">
-        <div class="card-body">
+        <img src="https://pc.kosokubus.com/include/ib/img/seats_page/nh.jpg" class="card-img-top" alt="Spacious Interior" style="height: 250px;">
+        <div class="card-body" style="height: 200px;">
           <h5 class="card-title">Spacious</h5>
           <p class="card-text">Ample interior space for a comfortable journey.</p>
         </div>
@@ -80,8 +81,8 @@
 
     <div class="col-md-4">
       <div class="card">
-        <img src="https://t3.ftcdn.net/jpg/04/12/13/26/360_F_412132684_f52Eb3d84CUbIu76j2vOGVJ8XuEwiAkD.jpg" class="card-img-top" alt="Comfortable Seating">
-        <div class="card-body">
+        <img src="https://t3.ftcdn.net/jpg/04/12/13/26/360_F_412132684_f52Eb3d84CUbIu76j2vOGVJ8XuEwiAkD.jpg" class="card-img-top" alt="Comfortable Seating" style="height: 250px;">
+        <div class="card-body" style="height: 200px;">
           <h5 class="card-title">Comfortable</h5>
           <p class="card-text">Plush and comfortable seating for a relaxing travel experience.</p>
         </div>
@@ -89,18 +90,18 @@
     </div>
 
     <div class="col-md-4">
-    <div class="card">
-        <img src="https://images.inc.com/uploaded_files/image/1920x1080/getty_680286484_200013332000928076_381534.jpg" class="card-img-top" alt="Trustworthy Service">
-        <div class="card-body">
-        <h5 class="card-title">Trustworthy</h5>
-        <p class="card-text">Reliable and trustworthy service for a secure travel experience.</p>
+      <div class="card">
+        <img src="https://images.inc.com/uploaded_files/image/1920x1080/getty_680286484_200013332000928076_381534.jpg" class="card-img-top" alt="Trustworthy Service" style="height: 250px;">
+        <div class="card-body" style="height: 200px;">
+          <h5 class="card-title">Trustworthy</h5>
+          <p class="card-text">Reliable and trustworthy service for a secure travel experience.</p>
         </div>
+      </div>
     </div>
-    </div>
-
 
   </div>
 </div>
+
 
 
 <?php
