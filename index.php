@@ -48,19 +48,22 @@
                 <div class="text-white">
                     <h1 class="mb-3">SmartTravel</h1>
                     <h4 class="mb-3">Your Gateway to Seamless Journeys and Intelligent Adventures</h4>
-                    <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="#!" role="button"
-                        >Explore Now</a
+                    <a data-mdb-ripple-init class="btn btn-outline-light btn-lg" href="#st" role="button"
+                        >Find Your Travel</a
                     >
+                    
                 </div>
+                
             </div>
+            
         </div>
+        
     </div>
     <!-- Background image -->
 
 
     </header>
 <!-- HEADING -->
-
 
 <div class="container mt-5">
   <div class="row">
@@ -99,6 +102,14 @@
   </div>
 </div>
 
+
+<?php
+
+include "controller\VilleController.php";
+$villeController = new VilleController();
+$villeController->getCities();
+
+?>
 
 
 

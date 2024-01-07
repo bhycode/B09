@@ -33,10 +33,7 @@
         <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="  ">Reservation</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">Management</a>
+        <a class="nav-link" href="adminstration.php">Adminstration</a>
         </li>
     </ul>
     <!-- Left links -->
