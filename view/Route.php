@@ -30,8 +30,11 @@
                 <td><?php echo $route->getVilleDep(); ?></td>
                 <td><?php echo $route->getVilleDes(); ?></td>
                 <td>
-                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="#" class="btn btn-primary btn-sm mr-2">Edit</a>
+                    <form action="deleteRoute.php" method="post" class="d-inline">
+                        <input type="hidden" name="routeID" value="<?php echo $route->getRouteID(); ?>">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
                 </td>
             </tr>
         <?php endforeach; ?>

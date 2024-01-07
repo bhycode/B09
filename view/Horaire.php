@@ -36,8 +36,11 @@
                 <td><?php echo $horaire->getRouteID(); ?></td>
                 <td><?php echo $horaire->getBusID(); ?></td>
                 <td>
-                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="#" class="btn btn-primary btn-sm mr-2">Edit</a>
+                    <form action="deleteHoraire.php" method="post" class="d-inline">
+                        <input type="hidden" name="hr_id" value="<?php echo $horaire->getHrId(); ?>">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
                 </td>
             </tr>
         <?php endforeach; ?>

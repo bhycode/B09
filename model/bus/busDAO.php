@@ -57,17 +57,17 @@ class BusDAO
 }
 
 
-    public function deleteBus($bus)
-    {
-        $stmt = $this->db->prepare("DELETE FROM Bus WHERE busNombre = ?");
-        $stmt->bind_param("i", $bus->getBusNombre());
+public function deleteBus($matricule)
+{
+    $stmt = $this->db->prepare("DELETE FROM Bus WHERE matricule = :matricule");
+    $stmt->bindParam(':matricule', $matricule, PDO::PARAM_INT);
 
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return false;
     }
+}
 }
 
 ?>

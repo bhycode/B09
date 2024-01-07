@@ -59,17 +59,18 @@ class RouteDAO
     }
     
 
-    public function deleteRoute($route)
+    public function deleteRoute($routeID)
     {
-        $stmt = $this->db->prepare("DELETE FROM Routee WHERE routeID = ?");
-        $stmt->bind_param("i", $route->getRouteID());
-
+        $stmt = $this->db->prepare("DELETE FROM Routee WHERE routeID = :routeID");
+        $stmt->bindParam(':routeID', $routeID, PDO::PARAM_INT);
+    
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
     }
+    
 }
 
 ?>

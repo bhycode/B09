@@ -12,6 +12,11 @@ class RouteController {
         include "View\Route.php" ;
     }
 
+    function deleteRoute($routeID) {
+        $routeDAO = new RouteDAO();
+        $delteResult = $routeDAO->deleteRoute($routeID);
+    }
+
 
 
 

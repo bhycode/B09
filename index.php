@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>SmartTravel   - HOME</title>
+    <title>SmartTravel - HOME</title>
     <meta name="description" content="An website for reserving the tickets.">
     <meta name="keywords" content="ticket, bus, ctm, travel, morocco, reservation">
     <meta charset="UTF-8">

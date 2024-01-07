@@ -62,17 +62,18 @@ class HoraireDAO
     }
     
 
-    public function deleteHoraire($horaire)
+    public function deleteHoraire($hr_id)
     {
-        $stmt = $this->db->prepare("DELETE FROM Horaire WHERE hr_id = ?");
-        $stmt->bind_param("i", $horaire->getHrId());
-
+        $stmt = $this->db->prepare("DELETE FROM Horaire WHERE hr_id = :hr_id");
+        $stmt->bindParam(':hr_id', $hr_id, PDO::PARAM_INT);
+    
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
     }
+    
 }
 
 ?>

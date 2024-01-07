@@ -13,7 +13,10 @@ class BusController {
     }
 
 
-
+    function deleteBus($matricule) {
+        $busDAO = new BusDAO();
+        $delteResult = $busDAO->deleteBus($matricule);
+    }
 
 }
 

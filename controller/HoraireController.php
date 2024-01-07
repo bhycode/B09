@@ -12,6 +12,11 @@ class HoraireController {
         include "View\Horaire.php" ;
     }
 
+    function deleteHoraire($hr_id) {
+        $horaireDAO = new HoraireDAO();
+        $delteResult = $horaireDAO->deleteHoraire($hr_id);
+    }
+
 
 
 
