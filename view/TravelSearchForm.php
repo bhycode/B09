@@ -1,7 +1,7 @@
 <!-- Find Your Travel Form -->
 <div id="st" class="container my-5">
   <h2>Find Your Travel</h2>
-  <form>
+  <form action="travels.php" method="GET">
     <div class="form-group">
       <label for="departureCity">City of Departure</label>
       <select class="form-control" id="departureCity" name="departureCity">

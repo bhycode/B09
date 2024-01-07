@@ -186,3 +186,10 @@ VALUES(145, 'B7845154', 'COPS-1', 50, 1),
     (808, 'B885237', 'MLA 8', 70, 14);
 
 SELECT * FROM Bus;
+
+
+SELECT h.*, e.nomEn from Horaire as h, routee as r, bus as b, Entreprise as e where h.routeID = r.routeID and r.villeDep = "Safi" and r.villeDes = "Casablanca" and h.dt = "2021-10-15" and h.sieges_dispo = 5 and h.busID = b.busNombre and b.idEn = e.idEn;
+
+
+
+-- http://localhost/Brief9/travels.php?departureCity=404&destinationCity=438&departureDate=2024-01-01&numberOfTravelers=10
