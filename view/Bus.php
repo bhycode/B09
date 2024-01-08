@@ -26,7 +26,10 @@
                 <td><?php echo $bus->getBusNom(); ?></td>
                 <td><?php echo $bus->getCapac(); ?></td>
                 <td>
-                    <a href="#" class="btn btn-primary btn-sm mr-2">Edit</a>
+                    <form action="updateBus.php" method="post" class="d-inline">
+                        <input type="hidden" name="matricule" value="<?php echo $bus->getMatricule(); ?>">
+                        <button type="submit" class="btn btn-primary btn-sm mr-2">Edit</button>
+                    </form>
                     <form action="deleteBus.php" method="post" class="d-inline">
                         <input type="hidden" name="matricule" value="<?php echo $bus->getMatricule(); ?>">
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>

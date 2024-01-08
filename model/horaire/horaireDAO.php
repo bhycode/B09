@@ -27,15 +27,24 @@ class HoraireDAO
 
     public function updateHoraire($horaire)
     {
-        $stmt = $this->db->prepare("UPDATE Horaire SET hr_dep = ?, hr_arv = ?, sieges_dispo = ?, prix = ?, dt = ?, routeID = ?, busID = ? WHERE hr_id = ?");
-        $stmt->bind_param("ddiidsiii", $horaire->getHrDep(), $horaire->getHrArv(), $horaire->getSiegesDispo(), $horaire->getPrix(), $horaire->getDt(), $horaire->getRouteID(), $horaire->getBusID(), $horaire->getHrId());
-
+        $stmt = $this->db->prepare("UPDATE Horaire SET hr_dep = :hr_dep, hr_arv = :hr_arv, sieges_dispo = :sieges_dispo, prix = :prix, dt = :dt, routeID = :routeID, busID = :busID WHERE hr_id = :hr_id");
+    
+        $stmt->bindParam(':hr_dep', $horaire->getHrDep(), PDO::PARAM_STR);
+        $stmt->bindParam(':hr_arv', $horaire->getHrArv(), PDO::PARAM_STR);
+        $stmt->bindParam(':sieges_dispo', $horaire->getSiegesDispo(), PDO::PARAM_INT);
+        $stmt->bindParam(':prix', $horaire->getPrix(), PDO::PARAM_INT);
+        $stmt->bindParam(':dt', $horaire->getDt(), PDO::PARAM_STR);
+        $stmt->bindParam(':routeID', $horaire->getRouteID(), PDO::PARAM_STR);
+        $stmt->bindParam(':busID', $horaire->getBusID(), PDO::PARAM_INT);
+        $stmt->bindParam(':hr_id', $horaire->getHrId(), PDO::PARAM_INT);
+    
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
     }
+    
 
     public function getHoraires()
     {

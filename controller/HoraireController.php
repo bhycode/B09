@@ -17,6 +17,11 @@ class HoraireController {
         $delteResult = $horaireDAO->deleteHoraire($hr_id);
     }
 
+    function updateHoraire($horaire) {
+        $horaireDAO = new HoraireDAO();
+        $horaireDAO->updateHoraire($horaire);
+    }
+
 
 
 

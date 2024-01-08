@@ -26,15 +26,21 @@ class RouteDAO
 
     public function updateRoute($route)
     {
-        $stmt = $this->db->prepare("UPDATE Routee SET distance = ?, duree = ?, villeDep = ?, villeDes = ? WHERE routeID = ?");
-        $stmt->bind_param("diiii", $route->getDistance(), $route->getDuree(), $route->getVilleDep(), $route->getVilleDes(), $route->getRouteID());
-
+        $stmt = $this->db->prepare("UPDATE Routee SET distance = :distance, duree = :duree, villeDep = :villeDep, villeDes = :villeDes WHERE routeID = :routeID");
+    
+        $stmt->bindParam(':distance', $route->getDistance(), PDO::PARAM_STR);
+        $stmt->bindParam(':duree', $route->getDuree(), PDO::PARAM_INT);
+        $stmt->bindParam(':villeDep', $route->getVilleDep(), PDO::PARAM_INT);
+        $stmt->bindParam(':villeDes', $route->getVilleDes(), PDO::PARAM_INT);
+        $stmt->bindParam(':routeID', $route->getRouteID(), PDO::PARAM_INT);
+    
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
     }
+    
 
     public function getRoutes()
     {

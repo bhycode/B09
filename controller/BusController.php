@@ -18,6 +18,12 @@ class BusController {
         $delteResult = $busDAO->deleteBus($matricule);
     }
 
+
+    function updateBus($bus) {
+        $busDAO = new BusDAO();
+        $busDAO->updateBus($bus);
+    }
+
 }
 
 

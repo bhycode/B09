@@ -26,15 +26,20 @@ class BusDAO
 
     public function updateBus($bus)
     {
-        $stmt = $this->db->prepare("UPDATE Bus SET matricule = ?, busNom = ?, capac = ?, idEn = ? WHERE busNombre = ?");
-        $stmt->bind_param("ssiii", $bus->getMatricule(), $bus->getBusNom(), $bus->getCapac(), $bus->getIdEn(), $bus->getBusNombre());
-
+        $stmt = $this->db->prepare("UPDATE Bus SET matricule = ?, busNom = ?, capac = ?, idEn = ? WHERE matricule = ?");
+        $stmt->bindParam(1, $bus->getMatricule(), PDO::PARAM_STR);
+        $stmt->bindParam(2, $bus->getBusNom(), PDO::PARAM_STR);
+        $stmt->bindParam(3, $bus->getCapac(), PDO::PARAM_INT);
+        $stmt->bindParam(4, $bus->getIdEn(), PDO::PARAM_INT);
+        $stmt->bindParam(5, $bus->getMatricule(), PDO::PARAM_STR);
+    
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
     }
+    
 
     public function getBuses()
 {
