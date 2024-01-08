@@ -1,5 +1,4 @@
 <?php
-
 require_once "C:\\xampp\\htdocs\\Brief9\\model\\route\\RouteDAO.php";
 require_once "controller/RouteController.php";
 
@@ -7,26 +6,31 @@ require_once "controller/RouteController.php";
 $routeController = new RouteController();
 
 // Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['distance'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     // Assuming that the Routee class is already included and instantiated before this point
-    $routeID = $_POST['routeID'];
-    $distance = $_POST['distance'];
-    $duree = $_POST['duree'];
-    $villeDep = $_POST['villeDep'];
-    $villeDes = $_POST['villeDes'];
 
-    // Create a new Routee object with the data
-    $newRoute = new Routee($routeID, $distance, $duree, $villeDep, $villeDes);
+    // Get the number of routes submitted
+    $numRoutes = count($_POST['distance']);
 
-    // Call the addRoute method
-    $routeController->addRoute($newRoute);
+    // Loop through each submitted route
+    for ($i = 0; $i < $numRoutes; $i++) {
+        $distance = $_POST['distance'][$i];
+        $duree = $_POST['duree'][$i];
+        $villeDep = $_POST['villeDep'][$i];
+        $villeDes = $_POST['villeDes'][$i];
+
+        // Create a new Routee object with the data
+        $newRoute = new Routee(null, $distance, $duree, $villeDep, $villeDes);
+
+        // Call the addRoute method
+        $routeController->addRoute($newRoute);
+    }
 
     // Redirect to some page after adding
     header("Location: adminstration.php");
     exit();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -41,43 +45,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['distance'])) {
 
 <div class="container mt-5">
     <h2>Add Route</h2>
-    <form action="addRoute.php" method="post">
-        <!-- RouteID Input (if needed) -->
-        <!-- <div class="form-group">
-            <label for="routeID">RouteID:</label>
-            <input type="text" class="form-control" id="routeID" name="routeID" required>
-        </div> -->
-
-        <!-- Distance Input -->
-        <div class="form-group">
-            <label for="distance">Distance:</label>
-            <input type="text" class="form-control" id="distance" name="distance" required>
+    <form action="addRoute.php" method="post" id="addRouteForm">
+        <!-- Dynamic Route Inputs -->
+        <div class="route-inputs">
+            <div class="form-group">
+                <label for="distance">Distance:</label>
+                <input type="text" class="form-control" name="distance[]" required>
+            </div>
+            <div class="form-group">
+                <label for="duree">Duree:</label>
+                <input type="text" class="form-control" name="duree[]" required>
+            </div>
+            <div class="form-group">
+                <label for="villeDep">VilleDep:</label>
+                <input type="text" class="form-control" name="villeDep[]" required>
+            </div>
+            <div class="form-group">
+                <label for="villeDes">VilleDes:</label>
+                <input type="text" class="form-control" name="villeDes[]" required>
+            </div>
         </div>
 
-        <!-- Duree Input -->
-        <div class="form-group">
-            <label for="duree">Duree:</label>
-            <input type="text" class="form-control" id="duree" name="duree" required>
-        </div>
+        <!-- Add Button -->
+        <button type="button" class="btn btn-success" onclick="addRouteForm()">Add Route</button>
 
-        <!-- VilleDep Input -->
-        <div class="form-group">
-            <label for="villeDep">VilleDep:</label>
-            <input type="text" class="form-control" id="villeDep" name="villeDep" required>
-        </div>
-
-        <!-- VilleDes Input -->
-        <div class="form-group">
-            <label for="villeDes">VilleDes:</label>
-            <input type="text" class="form-control" id="villeDes" name="villeDes" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Add Route</button>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script>
+    function addRouteForm() {
+        var clone = $(".route-inputs:first").clone();
+        clone.find("input").val("");
+        $("#addRouteForm").append(clone);
+    }
+</script>
 </body>
 </html>
