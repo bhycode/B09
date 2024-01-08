@@ -10,6 +10,7 @@
 
 <div class="container mt-5">
     <h2>List of Routes</h2>
+    <a href="addRoute.php" class="btn btn-primary mb-3">Add Route</a>
     <table class="table">
         <thead>
         <tr>

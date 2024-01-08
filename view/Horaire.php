@@ -10,6 +10,7 @@
 
 <div class="container mt-5">
     <h2>List of Horaires</h2>
+    <a href="addHoraire.php" class="btn btn-primary mb-3">Add Horaire</a>
     <table class="table">
         <thead>
         <tr>

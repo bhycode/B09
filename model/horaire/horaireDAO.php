@@ -15,15 +15,23 @@ class HoraireDAO
 
     public function addHoraire($horaire)
     {
-        $stmt = $this->db->prepare("INSERT INTO Horaire (hr_dep, hr_arv, sieges_dispo, prix, dt, routeID, busID) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ddiidsii", $horaire->getHrDep(), $horaire->getHrArv(), $horaire->getSiegesDispo(), $horaire->getPrix(), $horaire->getDt(), $horaire->getRouteID(), $horaire->getBusID());
-
+        $stmt = $this->db->prepare("INSERT INTO Horaire (hr_dep, hr_arv, sieges_dispo, prix, dt, routeID, busID) VALUES (:hr_dep, :hr_arv, :sieges_dispo, :prix, :dt, :routeID, :busID)");
+    
+        $stmt->bindParam(':hr_dep', $horaire->getHrDep());
+        $stmt->bindParam(':hr_arv', $horaire->getHrArv());
+        $stmt->bindParam(':sieges_dispo', $horaire->getSiegesDispo());
+        $stmt->bindParam(':prix', $horaire->getPrix());
+        $stmt->bindParam(':dt', $horaire->getDt());
+        $stmt->bindParam(':routeID', $horaire->getRouteID());
+        $stmt->bindParam(':busID', $horaire->getBusID());
+    
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
     }
+    
 
     public function updateHoraire($horaire)
     {

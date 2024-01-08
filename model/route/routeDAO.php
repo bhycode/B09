@@ -14,15 +14,20 @@ class RouteDAO
 
     public function addRoute($route)
     {
-        $stmt = $this->db->prepare("INSERT INTO Routee (distance, duree, villeDep, villeDes) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("diii", $route->getDistance(), $route->getDuree(), $route->getVilleDep(), $route->getVilleDes());
-
+        $stmt = $this->db->prepare("INSERT INTO Routee (distance, duree, villeDep, villeDes) VALUES (:distance, :duree, :villeDep, :villeDes)");
+    
+        $stmt->bindParam(':distance', $route->getDistance());
+        $stmt->bindParam(':duree', $route->getDuree());
+        $stmt->bindParam(':villeDep', $route->getVilleDep());
+        $stmt->bindParam(':villeDes', $route->getVilleDes());
+    
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
     }
+    
 
     public function updateRoute($route)
     {

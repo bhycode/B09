@@ -10,6 +10,7 @@
 
 <div class="container mt-5">
     <h2>List of Buses</h2>
+    <a href="addBus.php" class="btn btn-primary mb-3">Add Bus</a>
     <table class="table">
         <thead>
         <tr>

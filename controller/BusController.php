@@ -24,6 +24,11 @@ class BusController {
         $busDAO->updateBus($bus);
     }
 
+    function addBus($bus) {
+        $busDAO = new BusDAO();
+        $busDAO->addBus($bus);
+    }
+
 }
 
 

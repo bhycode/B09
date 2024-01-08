@@ -22,6 +22,11 @@ class HoraireController {
         $horaireDAO->updateHoraire($horaire);
     }
 
+    function addHoraire($horaire) {
+        $horaireDAO = new HoraireDAO();
+        $horaireDAO->addHoraire($horaire);
+    }
+
 
 
 

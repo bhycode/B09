@@ -22,7 +22,10 @@ class RouteController {
         $routeDAO->updateRoute($route);
     }
 
-
+    function addRoute($route) {
+        $routeDAO = new RouteDAO();
+        $routeDAO->addRoute($route);
+    }
 
 
 }

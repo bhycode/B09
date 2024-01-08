@@ -14,15 +14,20 @@ class BusDAO
 
     public function addBus($bus)
     {
-        $stmt = $this->db->prepare("INSERT INTO Bus (matricule, busNom, capac, idEn) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssii", $bus->getMatricule(), $bus->getBusNom(), $bus->getCapac(), $bus->getIdEn());
-
+        $stmt = $this->db->prepare("INSERT INTO Bus (matricule, busNom, capac, idEn) VALUES (:matricule, :busNom, :capac, :idEn)");
+    
+        $stmt->bindParam(':matricule', $bus->getMatricule());
+        $stmt->bindParam(':busNom', $bus->getBusNom());
+        $stmt->bindParam(':capac', $bus->getCapac());
+        $stmt->bindParam(':idEn', $bus->getIdEn());
+    
         if ($stmt->execute()) {
             return true;
         } else {
             return false;
         }
     }
+    
 
     public function updateBus($bus)
     {
