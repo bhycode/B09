@@ -131,8 +131,52 @@ class HoraireDAO
     }
     
     
-    
-    
+
+    public function getHorairesByParameters($idEn, $prix, $hr_dep)
+    {
+        $query = "SELECT h.*, e.nomEn 
+                FROM Horaire AS h
+                INNER JOIN Routee AS r ON h.routeID = r.routeID
+                INNER JOIN Bus AS b ON h.busID = b.busNombre
+                INNER JOIN Entreprise AS e ON b.idEn = e.idEn
+                WHERE r.villeDep = :villeDep
+                AND r.villeDes = :villeDes
+                AND h.dt = :dt
+                AND h.sieges_dispo > 0
+                AND h.prix <= :prix
+                AND e.idEn = :idEn";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':villeDep', $villeDep, PDO::PARAM_STR);
+        $stmt->bindParam(':villeDes', $villeDes, PDO::PARAM_STR);
+        $stmt->bindParam(':dt', $dt, PDO::PARAM_STR);
+        $stmt->bindParam(':prix', $prix, PDO::PARAM_INT);
+        $stmt->bindParam(':idEn', $idEn, PDO::PARAM_INT);
+
+        // Set values for $villeDep, $villeDes, and $dt based on your requirements
+
+        $stmt->execute();
+        $horairesData = $stmt->fetchAll();
+        $horairesList = array();
+
+        foreach ($horairesData as $row) {
+            $horaire = new Horaire(
+                $row['hr_id'],
+                $row['hr_dep'],
+                $row['hr_arv'],
+                $row['sieges_dispo'],
+                $row['prix'],
+                $row['dt'],
+                $row['routeID'],
+                $row['busID']
+            );
+            $horairesList[] = $horaire;
+        }
+
+        return $horairesList;
+    }
+
+
 
 
 

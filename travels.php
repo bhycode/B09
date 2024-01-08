@@ -23,13 +23,13 @@
 
     <?php
 
-    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['departureCity'])) {
 
         
         //TEST SEARCH
-        // $departureCity = 404;
-        // $destinationCity = 438;
-        // $departureDate = "2024-1-1";
+        // $departureCity = 404 Agadir;
+        // $destinationCity = 438 Sefrou;
+        // $departureDate = "2024-01-01";
         // $numberOfTravelers = 10;
         $departureCity = $_GET['departureCity'];
         $destinationCity = $_GET['destinationCity'];
@@ -84,6 +84,54 @@
         } else {
             echo "<p>No Horaires found for the given criteria.</p>";
         }
+    } else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['companyFilter'])) {
+        require_once "C:\\xampp\\htdocs\\Brief9\\controller\\HoraireController.php";
+        $horaireController = new HoraireController();
+    
+        $idEn = $_GET["companyFilter"];
+        $prix = $_GET["priceFilter"];
+        $hr_dep = $_GET["timeOfDayFilter"];
+        $horaires = $horaireController->getHorairesByParameters($idEn, $prix, $hr_dep);
+        if (!empty($horaires)) {
+            ?>
+            <table class="table table-bordered mt-3">
+                <thead>
+                <tr>
+                    <th>HR ID</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Time</th>
+                    <th>Available Seats</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                    <th>Route ID</th>
+                    <th>Bus ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($horaires as $horaire) {
+                    ?>
+                    <tr>
+                        <td><?php echo $horaire->getHrId(); ?></td>
+                        <td><?php echo $horaire->getHrDep(); ?></td>
+                        <td><?php echo $horaire->getHrArv(); ?></td>
+                        <td><?php echo $horaire->getSiegesDispo(); ?></td>
+                        <td><?php echo $horaire->getPrix(); ?></td>
+                        <td><?php echo $horaire->getDt(); ?></td>
+                        <td><?php echo $horaire->getRouteID(); ?></td>
+                        <td><?php echo $horaire->getBusID(); ?></td>
+                    </tr>
+                    <?php
+                }
+                ?>
+                </tbody>
+            </table>
+            <?php
+        } else {
+            echo "<p>No Horaires found for the given criteria.</p>";
+        }
+
+
     }
 
     ?>

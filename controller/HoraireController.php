@@ -28,6 +28,12 @@ class HoraireController {
     }
 
 
+    function getHorairesByParameters($idEn, $prix, $hr_dep) {
+        $horaireDAO = new HoraireDAO();
+        $horairesFiltered = $horaireDAO->getHorairesByParameters($idEn, $prix, $hr_dep);
+        return $horairesFiltered;
+    }
+
 
 
 }

@@ -1,7 +1,25 @@
+<?php
+
+// if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["companyFilter"])) {
+//     require_once "C:\\xampp\\htdocs\\Brief9\\controller\\HoraireController.php";
+//     $horaireController = new HoraireController();
+
+//     $idEn = $_GET["companyFilter"];
+//     $prix = $_GET["priceFilter"];
+//     $hr_dep = $_GET["timeOfDayFilter"];
+//     $result = $horaireController->getHorairesByParameters($idEn, $prix, $hr_dep);
+//     print_r($result);
+// }
+
+
+?>
+
+
+
 <div class="container mt-5">
     <h2>Filter Search</h2>
 
-    <form action="your_action_page.php" method="GET">
+    <form action="travels.php" method="GET">
         <div class="row mb-3">
             <div class="col-md-4">
                 <label for="companyFilter" class="form-label">Company</label>
