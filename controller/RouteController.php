@@ -17,6 +17,11 @@ class RouteController {
         $delteResult = $routeDAO->deleteRoute($routeID);
     }
 
+    function updateRoute($route) {
+        $routeDAO = new RouteDAO();
+        $routeDAO->updateRoute($route);
+    }
+
 
 
 
